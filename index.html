@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CSS Box Styling</title>
+    <title>Code Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
     <header>
-      <div class= "large-font">Code Quiz</div>
-      <button class="view HightScores">View HightScores</button> 
-      <button class="start-button">Start</button>
-    <div class= "timer">
-      <div class = "timer-text">
-      <div class="large-font timer-count">10</div>
-    </div>
+      <h1 class= "large-font">Code Quiz</h1>
+      <button class="view Highscores">View Highscores</button> 
+      
+      <div class= "timer"></div>
+      <!-- // Timer that counts down from 70
+function countdown() -->
+
+      <div class="score"></div>
+    
       
     </header>
 
     <main>
       <section>
-        
+        <button class="start-button">Start quiz</button>
       </section>
 
       <section>
-        <div class="card results">
-          <div class = "win-loss-container">
-          <div>
-          <h2>Wins: <span class="win">0 </span> </h2>
-          <h2>Losses: <span class="lose">0</span></h2>
+        <div class="rules">
+          <p>answer multiple choice question...</p>
         </div>
-          <button class="reset-button">Reset Score</button>
+        <div class="question-box">
+          
+        </div>
+        <button class="Clear Highscores">Clear Highscores</button>
+        <button class="Go Back">Go Back</button>
+        <!-- click this btn will triger event "go back will bring us back to Start quiz" btn 
+        and clear highscore will bring to even clearing the score -->
         
           </div>
         </div>

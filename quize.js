@@ -1,3 +1,59 @@
+//var for DOM elements 
+var startBtn = document.querySelector(".start-button");
+var questionBox = document.querySelector(".question-box");
+
+
+// create an array of objects for quiz quwestions and answers
+var questions = [
+  {
+    question: "This question one?", 
+    answers: ["answer1", "answer2", "answer3", "answer4"],
+    correct: "answer3"
+  },
+  {
+    question: "This question two?", 
+    answers: ["answer1", "answer2", "answer3", "answer4"],
+    correct: "answer1"
+  },
+  {
+    question: "This question three?", 
+    answers: ["answer1", "answer2", "answer3", "answer4"],
+    correct: "answer4"
+  }
+]
+// create varables to control the flow of the quiz
+var currentQuest = 0
+// write function to display questions
+function displayQuestion(){
+  console.log("displaying")
+  // create template for HTMl inside question box
+  var template = `
+  <h2>${questions[currentQuest].question}</h2>
+  <button> ${questions[currentQuest].answers[0]}</button>
+  <button> ${questions[currentQuest].answers[1]}</button>
+  <button> ${questions[currentQuest].answers[2]}</button>
+  <button> ${questions[currentQuest].answers[3]}</button>
+ 
+  `
+  // figure out listen click
+  // inject template into question box with inner html method
+  questionBox.innerHTML = template
+}
+// write a function to start a game
+function startGame(){
+  console.log("game start")
+  // display question
+  displayQuestion();
+
+}
+
+// attach eventlistener to start btn
+startBtn.addEventListener("click", startGame);
+
+
+
+
+
 /* Higt score elements
 score screen element
 timer element
@@ -10,6 +66,14 @@ function to input
 next btn will display quiz
 start btn
 */
+
+
+
+
+
+
+
+
 
 /*var wordBlank = document.querySelector(".word-blanks");
 var win = document.querySelector(".win");
@@ -200,5 +264,4 @@ function resetGame() {
   setLosses()
 }
 // Attaches event listener to button
-resetButton.addEventListener("click", resetGame);ß
-
+resetButton.addEventListener("click", resetGame*/
