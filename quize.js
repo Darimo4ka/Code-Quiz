@@ -2,6 +2,7 @@
 var startBtn = document.querySelector(".start-button");
 var questionBox = document.querySelector(".question-box");
 var endBtn  = document.querySelector(".end-game");
+var timer = document.querySelector(".timer");
 
 // create an array of objects for quiz questions and answers
 var questions = [
@@ -23,20 +24,10 @@ var questions = [
 ]
 // create varables to control the flow of the quiz
 var currentQuestion = 0
+var timeLeft = 60
 // write function to display questions
 function displayQuestion(){
   console.log("displaying")
-
-
-  // questions.textContent = questions[currentQuestion].question;
-  // questionAnswer = questions[currentQuestion].answers;
-
-  // for (let i = 0; i < questions.length; i++){
-  //   let answerBtnEl = document.createElement("button");
-  //   answerBtnEl.textContent = questions[i]
-    
-  // }
-
 
   // create template for HTMl inside question box
   var template = `
@@ -47,79 +38,67 @@ function displayQuestion(){
   <button onclick="evaluateQuestion(this)">${questions[currentQuestion].answers[3]}</button>
  
   `
-
-
   // inject template into question box with inner html method
   questionBox.innerHTML = template;
 }
 
-
 function evaluateQuestion(event){
-console.log(event)//we want to see what we are clicking
+  console.log(event)//we want to see what we are clicking
 
-//if we click answer 1 event.target.textContent is equal to answer1
-console.log(event.textContent)
-//event.target.textContent is going to give us the text of the answer 
-var userChoice= event.textContent;
-//if answer1 is the same as questions[currentQuestion].correct
-var correctAnswer=questions[currentQuestion].correct;
-console.log(correctAnswer)
+  //if we click answer 1 event.target.textContent is equal to answer1
+  console.log(event.textContent)
+  //event.target.textContent is going to give us the text of the answer 
+  var userChoice= event.textContent;
+  //if answer1 is the same as questions[currentQuestion].correct
+  var correctAnswer=questions[currentQuestion].correct;
+  console.log(correctAnswer)
 
-if(userChoice===correctAnswer){
-  console.log('correct!')
+  if(userChoice===correctAnswer){
+    console.log('correct!')
   //
-}else{
-  console.log('incorrect')
-  //decrease timer
+  }else{
+    console.log('incorrect')
+    //decrease timer
+    timeLeft = timeLeft-10;
+  }
+
+  if(currentQuestion < questions.length-1){
+    currentQuestion++
+    displayQuestion()
+  }
+  else{ 
+    endGame()
+  }
+}
+function endGame(){
+  console.log("game over");
+  questionBox.innerHTML= ""
+}
+// input INS and storage Local(set iteam)From( local storage getitem);
+//quetion box html 
+function startTime(){
+  console.log("time is here")
+  // print value "timeLeft" into timer div using inner HTML
+  timer.innerHTML = `<p> time left: ${timeLeft}</p>` 
+  timeLeft-- 
+  if (timeLeft===0){
+    endGame()
+  }
 }
 
-if(currentQuestion < questions.length-1){
-  currentQuestion++
-  displayQuestion()
-}
-else{
-  // function to end game and clear highscores
- 
-}
-
-}
 // write a function to start a game
 function startGame(){
   console.log("game start")
   // display question
   displayQuestion();
 
+  //start time
+  setInterval(startTime, 1000);
+
 }
+
+
 
 // attach eventlistener to start btn
 startBtn.addEventListener("click", startGame);
 
-
-
-
-// // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
-// function startTimer() {
-//   // Sets timer
-//   timer = setInterval(function() {
-//     timerCount--;
-//     timerElement.textContent = timerCount;
-//     if (timerCount >= 0) {
-//       // Tests if win condition is met
-//       if (isWin && timerCount > 0) {
-//         // Clears interval and stops timer
-//         clearInterval(timer);
-//         winGame();
-//       }
-//     }
-
-// // Updates win count on screen and sets win count to client storage
-// function setWins() {
-//   win.textContent = winCounter;
-//   localStorage.setItem("winCount", winCounter);
-// }
-
-// // Updates lose count on screen and sets lose count to client storage
-// function setLosses() {
-//   lose.textContent = loseCounter;
-//   localStorage.setItem("loseCount", loseCounter);
-// }

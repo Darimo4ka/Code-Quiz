@@ -1,7 +1,7 @@
 
   
   
- /* body {
+  body {
     font-family: Arial;
     margin: 0;
     display: flex;
@@ -9,22 +9,22 @@
     min-height: 100vh;
     justify-content: flex-start;
     background: linear-gradient(0deg, rgba(19,41,61,1) 0%, rgba(237,245,249,1) 63%);
-  }
+  } 
   
-  .reset-button {
+  .start-button {
     font-size: 16px;
     height: 30px;
     line-height: 8px;
     margin-top: 20px;
   }
   
-  .win-loss-container {
+  /* .win-loss-container {
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
-  }
+  } */
   
-  button {
+  /* .question-box {
     background: radial-gradient(circle, rgba(240,230,140,1) 0%, rgba(187,96,33,0.9542191876750701) 100%);
     border-radius: 8px;
     color: #13293d;
@@ -38,7 +38,7 @@
     transition-duration: 0.15s;
     transition-property: background-color;
     transition-timing-function: linear;
-    margin-top: 0.6em;
+    margin-top: 0.6em; */
   }
   
   header {
@@ -49,13 +49,13 @@
     border-bottom:30px #879274;
   }
   
-  main {
+  /* main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-  }
+  } */
   
-  section {
+  /* section {
     flex: 0 auto;
     padding: 8px;
     margin-top: 50px;
@@ -136,4 +136,4 @@
       height: 200px;
     }
    
-   
+    */ */ */
