@@ -3,6 +3,7 @@ var startBtn = document.querySelector(".start-button");
 var questionBox = document.querySelector(".question-box");
 var endBtn  = document.querySelector(".end-game");
 var timer = document.querySelector(".timer");
+// var highscoresBtn = document.querySelectorAll(".View Highscores");
 
 // create an array of objects for quiz questions and answers
 var questions = [
@@ -24,12 +25,11 @@ var questions = [
 ]
 // create varables to control the flow of the quiz
 var currentQuestion = 0
-var timeLeft = 60
+var timeLeft = 30
 // write function to display questions
 function displayQuestion(){
   console.log("displaying")
-
-  // create template for HTMl inside question box
+ // create template for HTMl inside question box
   var template = `
   <h2>${questions[currentQuestion].question}</h2>
   <button onclick="evaluateQuestion(this)">${questions[currentQuestion].answers[0]}</button>
@@ -54,36 +54,53 @@ function evaluateQuestion(event){
   console.log(correctAnswer)
 
   if(userChoice===correctAnswer){
-    console.log('correct!')
-  //
-  }else{
+    console.log('Correct!')
+    }
+  
+  else{
     console.log('incorrect')
     //decrease timer
+    if (timeLeft - 10 >= 0){
     timeLeft = timeLeft-10;
   }
+  
+  }
 
+  // if(currentQuestion <= questions.length-1){  
+  //   currentQuestion++ 
+  //   displayQuestion();
+  // }
   if(currentQuestion < questions.length-1){
+    console.log(currentQuestion,questions.lenght-1)
     currentQuestion++
-    displayQuestion()
+    displayQuestion();
+  }else{
+    // clearInterval(timeInterval);
+    questionBox.innerHTML= "That would be all!";
+    }
   }
-  else{ 
-    endGame()
-  }
-}
+  //  CAN WE SET CLEAR INTERVAL FOR TIMEOUT AND NO MORE QUESTIONS? I THINK YES, BUT HOW TO DO IT I TRIED IT AND IT DIDN'T WORK
+  
+
+    
 function endGame(){
+  // displayMessage()
   console.log("game over");
-  questionBox.innerHTML= ""
+  // questionBox.innerHTML= ""
 }
 // input INS and storage Local(set iteam)From( local storage getitem);
 //quetion box html 
 function startTime(){
   console.log("time is here")
   // print value "timeLeft" into timer div using inner HTML
-  timer.innerHTML = `<p> time left: ${timeLeft}</p>` 
-  timeLeft-- 
-  if (timeLeft===0){
-    endGame()
+  var timeInterval = setInterval(function(){
+  timer.innerHTML = `<p> time left: ${timeLeft}</p>`;
+  timeLeft--;
+  if (timeLeft < 0){
+  clearInterval(timeInterval);
+  questionBox.innerHTML= "No More time";
   }
+}, 1000);
 }
 
 // write a function to start a game
@@ -92,12 +109,13 @@ function startGame(){
   // display question
   displayQuestion();
 
+ startTime();
   //start time
-  setInterval(startTime, 1000);
+  // setInterval(startTime, 1000);
 
 }
-
-
+// attache eventlistener to Highscoresbtn
+// highscoresBtn.addEventListener("click", evaluateQuestion);
 
 // attach eventlistener to start btn
 startBtn.addEventListener("click", startGame);
