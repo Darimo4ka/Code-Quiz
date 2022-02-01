@@ -3,6 +3,10 @@ var startBtn = document.querySelector(".start-button");
 var questionBox = document.querySelector(".question-box");
 var endBtn  = document.querySelector(".end-game");
 var timer = document.querySelector(".timer");
+var highscoresBtn=document.querySelector('.View-Highscores')
+var viewScore= document.querySelector('.score')
+var submitButton =document.querySelector("#submitButton");
+var nameInput = document.querySelector("#initials");
 // var highscoresBtn = document.querySelectorAll(".View Highscores");
 
 // create an array of objects for quiz questions and answers
@@ -76,20 +80,41 @@ function evaluateQuestion(event){
     displayQuestion();
   }else{
     // clearInterval(timeInterval);
-    questionBox.innerHTML= "That would be all!";
+endGame()
+    //the game ended
+    //you are going to save the time left as the score
+    //and you re agoing to call the endGame function
+    //endgame function will create the input and the button to save
+    //the save button will have an event listener that will take the input box with the initials
+    //and the score and save it to local storage
     }
   }
   //  CAN WE SET CLEAR INTERVAL FOR TIMEOUT AND NO MORE QUESTIONS? I THINK YES, BUT HOW TO DO IT I TRIED IT AND IT DIDN'T WORK
   
-
+//  creat loop for accessing array of answers evaluate what is correct and incorrect to give score when user inputs initials.(how?)
     
 function endGame(){
   // displayMessage()
   console.log("game over");
-  // questionBox.innerHTML= ""
+  // clearInterval(timeInterval);
+
+
+  localStorage.setItem('nameInput', JSON.stringify(nameInput));
+  
+  function viewedScore(event){
+    event.preventDefault();
+    var response = "Here is your score" + "  "  + nameInput.value + " " + " " + timeLeft;
+    submitButton.textContent = response;
+  }
+  submitButton.addEventListener("click",viewedScore );
+
+  
+
+
+  questionBox.innerHTML= "That would be all!";
+ 
 }
-// input INS and storage Local(set iteam)From( local storage getitem);
-//quetion box html 
+
 function startTime(){
   console.log("time is here")
   // print value "timeLeft" into timer div using inner HTML
@@ -110,12 +135,15 @@ function startGame(){
   displayQuestion();
 
  startTime();
-  //start time
-  // setInterval(startTime, 1000);
+  
 
 }
-// attache eventlistener to Highscoresbtn
-// highscoresBtn.addEventListener("click", evaluateQuestion);
+
+
+
+
+ highscoresBtn.addEventListener("click",viewScore );
+ 
 
 // attach eventlistener to start btn
 startBtn.addEventListener("click", startGame);
